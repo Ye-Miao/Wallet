@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">lib_base</string>
+
+    <string name="base_error_no_net">No Net</string>
+    <string name="base_error_no_data">No Data</string>
+    <string name="base_error_desc">Error</string>
+</resources>

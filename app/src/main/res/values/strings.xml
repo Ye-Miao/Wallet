@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Wallet</string>
+
+    <!--block canary-->
+    <integer name="block_canary_max_stored_count">1000</integer>
+    <string name="block_canary_display_activity_label">Blocks</string>
+
+</resources>

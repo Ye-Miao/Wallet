@@ -1,0 +1,97 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion versions.compileSdk
+    buildToolsVersion versions.buildTools
+
+    defaultConfig {
+        applicationId "com.zs.wallet"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+
+        versionCode versions.versionCode
+        versionName versions.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        // room 配置
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation"  : "$projectDir/schemas".toString(),
+                        "room.incremental"     : "true",
+                        "room.expandProjection": "true"]
+            }
+        }
+    }
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+//            buildConfigField "String", "BASE_URL", '\"https://api.github.com\"'
+//            buildConfigField "String", "BASE_URL", '\"http://testappapi.hudongvip.com\"'
+            buildConfigField "String", "BASE_URL", '\"https://appapi.wz56fc.com.cn\"'
+            buildConfigField "String", "BASE_OTC_URL", '\"http://testotcappapi.hudongvip.com\"'
+            buildConfigField "boolean", "IS_DEBUG", "true"
+
+            minifyEnabled false
+        }
+        release {
+            buildConfigField "String", "BASE_URL", '\"https://appapi.wz56fc.com.cn\"'
+            buildConfigField "boolean", "IS_DEBUG", "false"
+
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation deps.kotlin.stdlib
+    implementation(deps.androidx.appcompat) {
+        exclude group: 'androidx.lifecycle'
+    }
+    implementation deps.androidx.core_ktx
+
+    implementation deps.androidx.constraintlayout
+    implementation deps.androidx.lifecycle
+    implementation deps.androidx.viewmodel
+    //room
+    implementation deps.room.core
+    implementation deps.room.ktx
+    kapt deps.room.compiler
+
+    implementation deps.mmkv
+
+    // 内存泄漏检测
+    debugImplementation deps.leakcanary
+    // 界面卡顿检测
+    debugImplementation deps.blockcanary.debug
+    releaseImplementation deps.blockcanary.release
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.androidx_junit
+    androidTestImplementation deps.test.espresso_core
+
+    implementation project(path: ':lib_base')
+    implementation project(path: ':lib_log')
+    implementation project(path: ':lib_imageloader')
+
+}

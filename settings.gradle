@@ -1,0 +1,2 @@
+include ':app', ':lib_base', ':lib_log', ':lib_imageloader'
+rootProject.name='Wallet'
