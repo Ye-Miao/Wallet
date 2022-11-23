@@ -11,7 +11,6 @@ import com.zs.lib.base.utils.ext.newFragment
  */
 class AboutActivity : BaseActivity() {
 
-
     override fun initViews(savedInstanceState: Bundle?) {
         setupWithFragment(newFragment<SettingFragment>())
 
