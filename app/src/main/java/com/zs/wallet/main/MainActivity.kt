@@ -25,6 +25,7 @@ class MainActivity : BaseActivity() {
 
     override fun setLayout(): Int = R.layout.activity_main
 
+
     override fun initViews(savedInstanceState: Bundle?) {
         sample_text.setOnClickListener {
             startActivity(this, AboutActivity::class.java)
