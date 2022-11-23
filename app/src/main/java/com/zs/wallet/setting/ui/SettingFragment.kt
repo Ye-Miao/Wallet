@@ -12,7 +12,6 @@ import com.zs.wallet.R
  */
 class SettingFragment : BaseFragment() {
 
-
     override fun setLayout(): Int {
         return R.layout.setting_fragment
     }
