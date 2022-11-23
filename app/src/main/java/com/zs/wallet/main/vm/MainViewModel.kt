@@ -44,7 +44,6 @@ class MainViewModel : ViewModel() {
                 return@launch
             }
 
-
             loadStateLiveData.value = RequestLoadState.Error(resultVo?.code, resultVo?.msg)
         }, {
             loadStateLiveData.value = RequestLoadState.Error(throwable = it)
