@@ -21,7 +21,6 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
 
     private val mainRepository: MainRepository = MainRepository()
-
     val gitDataLiveData = MutableLiveData<List<MainVo>>()
     val publicInfoLiveData = MutableLiveData<RequestLoadState<PublicInfoVo>>()
     val loadStateLiveData = MutableLiveData<RequestLoadState<List<PublicInfoVo>>>()
