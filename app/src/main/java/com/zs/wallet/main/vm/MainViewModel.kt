@@ -43,6 +43,8 @@ class MainViewModel : ViewModel() {
                 publicInfoLiveData.value = RequestLoadState.Success(resultVo.data!!)
                 return@launch
             }
+
+
             loadStateLiveData.value = RequestLoadState.Error(resultVo?.code, resultVo?.msg)
         }, {
             loadStateLiveData.value = RequestLoadState.Error(throwable = it)
